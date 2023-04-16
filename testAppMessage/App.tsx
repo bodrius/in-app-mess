@@ -1,7 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import inAppMessaging from '@react-native-firebase/in-app-messaging';
 
 const App = () => {
+  async function onSetup() {
+    // Allow user to receive messages now setup is complete
+    inAppMessaging().setMessagesDisplaySuppressed(false);
+  }
+
+  useEffect(() => {
+    onSetup();
+  }, []);
+
   return (
     <View style={styles.layout}>
       <Text style={styles.text}>HELLO!</Text>
